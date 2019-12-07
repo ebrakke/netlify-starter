@@ -2,21 +2,33 @@ import React from "react"
 import Img from "gatsby-image"
 import { graphql } from "gatsby"
 
-const IndexPage = ({ data }) => {
-  const {
-    markdownRemark: { html, frontmatter },
-  } = data
+export const IndexPageTemplate = ({ image = "", html, title }) => {
   return (
     <div>
-      <p>{frontmatter.title}</p>
+      <p>{title}</p>
       <div dangerouslySetInnerHTML={{ __html: html }} />
       <div>
         <h2>Here's an image</h2>
         <div style={{ maxWidth: 400 }}>
-          <Img fluid={frontmatter.image.childImageSharp.fluid} />
+          {image.childImageSharp ? (
+            <Img fluid={image.childImageSharp.fluid} />
+          ) : (
+            <img src={image} />
+          )}
         </div>
       </div>
     </div>
+  )
+}
+
+const IndexPage = ({ data }) => {
+  const { frontmatter, html } = data.markdownRemark
+  return (
+    <IndexPageTemplate
+      title={frontmatter.title}
+      html={html}
+      image={frontmatter.image}
+    />
   )
 }
 
