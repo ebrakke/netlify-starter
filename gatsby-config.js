@@ -18,5 +18,7 @@ module.exports = {
         name: "uploads",
       },
     },
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
   ],
 }
