@@ -5,5 +5,18 @@
  */
 
 module.exports = {
-  /* Your site config here */
+  siteMetadata: {
+    title: "Erik Brakke's Starter",
+    description: "This is a starter made by Erik",
+  },
+  plugins: [
+    "gatsby-plugin-react-helmet", // Use for better SEO
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/static/img`,
+        name: "uploads",
+      },
+    },
+  ],
 }
